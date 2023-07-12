@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.pa2_u3_p4_al_mp.repository.IHotelRepository;
+import com.example.pa2_u3_p4_al_mp.repository.modelo.Habitacion;
 import com.example.pa2_u3_p4_al_mp.repository.modelo.Hotel;
 
 @Service
@@ -18,6 +19,22 @@ public class HotelServiceImpl implements IHotelService{
 
         return this.iHotelRepository.seleccionarInnerJoin();
 
+    }
+    @Override
+    public List<Hotel> buscarRightJoin() {
+        return this.iHotelRepository.seleccionarRightJoin();
+    }
+    @Override
+    public List<Habitacion> buscarOuterLeftJoin() {
+        return iHotelRepository.seleccionarHabitacionesOuterLeftJoin();
+    }
+    @Override
+    public List<Hotel> buscarFullJoin() {
+        return this.iHotelRepository.seleccionarFullJoin();
+    }
+    @Override
+    public List<Hotel> buscarWhereJoin() {
+        return this.iHotelRepository.seleccionarWhereJoin();
     }
     
 }
