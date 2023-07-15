@@ -25,6 +25,10 @@ public class HotelRepositoryImpl implements IHotelRepository{
         //relacion que hace referencia a las habitaciones 
         String jpql = "SELECT h FROM Hotel h LEFT JOIN h.habitacion ha";
         TypedQuery<Hotel> myQuery = this.entityManager.createQuery(jpql, Hotel.class);
+        List<Hotel> lisHot = myQuery.getResultList();
+        for (Hotel hotel : lisHot) {
+            hotel.getHabitacion().size();
+        }
         return myQuery.getResultList();
     }
 
@@ -59,6 +63,18 @@ public class HotelRepositoryImpl implements IHotelRepository{
 
         TypedQuery<Hotel> myQuery = this.entityManager.createQuery(jpql,Hotel.class);
         return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Hotel> seleccionarFetchJoin() {
+        String jpql = "SELECT h FROM Hotel h JOIN FETCH h.habitacion ha"; //ojo donde esta el fetch va despues del join
+        TypedQuery<Hotel> myQuery = this.entityManager.createQuery(jpql,Hotel.class);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public void insertar(Hotel hotel) {
+        this.entityManager.persist(hotel);
     }
 
     

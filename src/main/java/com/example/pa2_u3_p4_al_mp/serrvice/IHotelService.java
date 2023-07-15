@@ -11,4 +11,6 @@ public interface IHotelService {
     public List<Habitacion> buscarOuterLeftJoin();
     public List<Hotel> buscarFullJoin();
     public List<Hotel> buscarWhereJoin();
+    public List<Hotel> buscarFetchJoin();
+    public void agregar(Hotel hotel);
 }
