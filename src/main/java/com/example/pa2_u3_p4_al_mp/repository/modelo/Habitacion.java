@@ -58,19 +58,19 @@ public class Habitacion {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
-    
-    
-    //toString 
-    @Override
-    public String toString() {
-        return "Habitacion [id=" + id + ", numero=" + numero + ", valor=" + valor + "]";
-    }
     public BigDecimal getValorMasIVA() {
         return valorMasIVA;
     }
     public void setValorMasIVA(BigDecimal valorMasIVA) {
         this.valorMasIVA = valorMasIVA;
     }
+    
+    //toString 
+    @Override
+    public String toString() {
+        return "Habitacion [id=" + id + ", numero=" + numero + ", valor=" + valor + "]";
+    }
+    
 
     
 
