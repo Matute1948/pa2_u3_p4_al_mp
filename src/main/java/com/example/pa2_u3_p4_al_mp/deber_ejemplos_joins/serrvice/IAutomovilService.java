@@ -10,7 +10,9 @@ public interface IAutomovilService {
     public void remover(String id);
     public Automovil buscarPorId(String id);
     public List<Automovil> buscarInnerJoin();
+    public List<Automovil> buscarLeftJoin();
     public List<Automovil> buscarRightJoin();
     public List<Automovil> buscarFullJoin();
     public List<Automovil> buscarWhereJoin();
+    public List<Automovil> buscarJoinFetch();
 }

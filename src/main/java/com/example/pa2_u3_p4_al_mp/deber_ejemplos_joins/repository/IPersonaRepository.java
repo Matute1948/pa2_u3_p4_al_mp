@@ -11,6 +11,8 @@ public interface IPersonaRepository {
     public Persona seleccionarPorId(String id);
     public List<Persona> seleccionarInnerJoin();
     public List<Persona> seleccionarRightJoin();
+    public List<Persona> seleccionarLeftJoin();
     public List<Persona> seleccionarFullJoin();
     public List<Persona> seleccionarWhereJoin();
+    public List<Persona> seleccionarJoinFetch();
 }

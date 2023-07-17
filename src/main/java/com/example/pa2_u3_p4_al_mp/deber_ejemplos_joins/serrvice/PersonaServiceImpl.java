@@ -34,26 +34,32 @@ public class PersonaServiceImpl implements IPersonaService{
 
     @Override
     public List<Persona> buscarInnerJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarInnerJoin'");
+        return this.personaRepository.seleccionarInnerJoin();
+    }
+
+    @Override
+    public List<Persona> buscarLeftJoin() {
+        return this.personaRepository.seleccionarLeftJoin();
     }
 
     @Override
     public List<Persona> buscarRightJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarRightJoin'");
+        return this.personaRepository.seleccionarRightJoin();
     }
 
     @Override
     public List<Persona> buscarFullJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarFullJoin'");
+        return this.personaRepository.seleccionarFullJoin();
     }
 
     @Override
     public List<Persona> buscarWhereJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarWhereJoin'");
+        return this.personaRepository.seleccionarWhereJoin();
+    }
+
+    @Override
+    public List<Persona> buscarJoinFetch() {
+        return this.personaRepository.seleccionarJoinFetch();
     }
     
 }

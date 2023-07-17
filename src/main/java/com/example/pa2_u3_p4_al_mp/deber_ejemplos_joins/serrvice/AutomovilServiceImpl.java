@@ -38,21 +38,28 @@ public class AutomovilServiceImpl implements IAutomovilService{
     }
 
     @Override
+    public List<Automovil> buscarLeftJoin() {
+        return this.automovilRepository.seleccionarLeftJoin();
+    }
+
+    @Override
     public List<Automovil> buscarRightJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarRightJoin'");
+        return this.automovilRepository.seleccionarRightJoin();
     }
 
     @Override
     public List<Automovil> buscarFullJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarFullJoin'");
+        return this.automovilRepository.seleccionarFullJoin();
     }
 
     @Override
     public List<Automovil> buscarWhereJoin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarWhereJoin'");
+        return this.automovilRepository.seleccionarWhereJoin();
+    }
+
+    @Override
+    public List<Automovil> buscarJoinFetch() {
+        return this.automovilRepository.seleccionarJoinFetch();
     }
     
 }

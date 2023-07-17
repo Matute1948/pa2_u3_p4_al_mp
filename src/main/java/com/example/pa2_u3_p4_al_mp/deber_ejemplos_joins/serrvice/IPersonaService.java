@@ -10,7 +10,9 @@ public interface IPersonaService {
     public void remover(String id);
     public Persona buscarPorId(String id);
     public List<Persona> buscarInnerJoin();
+    public List<Persona> buscarLeftJoin();
     public List<Persona> buscarRightJoin();
     public List<Persona> buscarFullJoin();
     public List<Persona> buscarWhereJoin();
+    public List<Persona> buscarJoinFetch();
 }

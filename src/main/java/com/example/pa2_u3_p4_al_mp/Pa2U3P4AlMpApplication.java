@@ -14,15 +14,10 @@ import com.example.pa2_u3_p4_al_mp.deber_ejemplos_joins.repository.modelo.Automo
 import com.example.pa2_u3_p4_al_mp.deber_ejemplos_joins.repository.modelo.Persona;
 import com.example.pa2_u3_p4_al_mp.deber_ejemplos_joins.serrvice.IAutomovilService;
 import com.example.pa2_u3_p4_al_mp.deber_ejemplos_joins.serrvice.IPersonaService;
-import com.example.pa2_u3_p4_al_mp.repository.modelo.Habitacion;
-import com.example.pa2_u3_p4_al_mp.repository.modelo.Hotel;
-import com.example.pa2_u3_p4_al_mp.serrvice.IHotelService;
 
 @SpringBootApplication
 public class Pa2U3P4AlMpApplication implements CommandLineRunner{
 
-	@Autowired
-	private IHotelService iHotelService;
 	@Autowired
 	private IPersonaService personaService;
 	@Autowired
@@ -33,48 +28,114 @@ public class Pa2U3P4AlMpApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("***********************************");
+		System.out.println("Persona");
+		System.out.println("***********************************");
+		System.out.println("***********************************");
+		System.out.println("Join Inner");
+		System.out.println("***********************************");
+		List<Persona> lisPer = this.personaService.buscarInnerJoin();
+		for (Persona persona : lisPer) {
+			System.out.println(persona);
+		}
 
-		Hotel hotell = new Hotel();
-		hotell.setDireccion("Selva Alegra");
-		hotell.setNombre("Picos Helados");
-		
-		Habitacion hab1 = new Habitacion();
-		hab1.setHotel(hotell);
-		hab1.setNumero("10");
-		hab1.setValor(new BigDecimal(20));
+		System.out.println("***********************************");
+		System.out.println("Join Right");
+		System.out.println("***********************************");
+		List<Persona> lisPer1 = this.personaService.buscarRightJoin();
+		for (Persona persona : lisPer1) {
+			System.out.println(persona);
 
-		Habitacion hab2 = new Habitacion();
-		hab2.setHotel(hotell);
-		hab2.setNumero("11");
-		hab2.setValor(new BigDecimal(30));
+		}
 
-		List<Habitacion> listHab = new ArrayList<>();
-		listHab.add(hab2);
-		listHab.add(hab1);
-		hotell.setHabitacion(listHab);
-		this.iHotelService.agregar(hotell);
-		
+		System.out.println("***********************************");
+		System.out.println("Join Left");
+		System.out.println("***********************************");
+		List<Persona> lisPer2 = this.personaService.buscarLeftJoin();
+		for (Persona persona : lisPer2) {
+			System.out.println(persona);
+		}
 
+		System.out.println("***********************************");
+		System.out.println("Join Full");
+		System.out.println("***********************************");
+		List<Persona> lisPer3 = this.personaService.buscarFullJoin();
+		for (Persona persona : lisPer3) {
+			System.out.println(persona);
+		}
 
-	
-		List<Hotel> lisHot = this.iHotelService.buscarInnerJoin();
-		for (Hotel hotel : lisHot) {
-			System.out.println(hotel.getNombre());
-			System.out.println("Tiene las siguientes Habitacion");
-			for (Habitacion hab : hotel.getHabitacion()) {
-				System.out.println(hab);
-			}
+		System.out.println("***********************************");
+		System.out.println("Join Where");
+		System.out.println("***********************************");
+
+		List<Persona> lisPer4 = this.personaService.buscarWhereJoin();
+		for (Persona persona : lisPer4) {
+			System.out.println(persona);
 		}
 		System.out.println("***********************************");
 		System.out.println("Join Fetch");
 		System.out.println("***********************************");
-		List<Hotel> lisHotFetch = this.iHotelService.buscarFetchJoin();
-		for (Hotel hotel : lisHotFetch) {
-			System.out.println(hotel.getNombre());
-			System.out.println("Tiene las siguientes Habitacion");
-			for (Habitacion hab : hotel.getHabitacion()) {
-				System.out.println(hab);
+		List<Persona> lisPerFetch = this.personaService.buscarJoinFetch();
+		for (Persona persona : lisPerFetch) {
+			System.out.println(persona.getNombre());
+			System.out.println("Tiene los siguientes Automoviles");
+			for (Automovil aut : persona.getAutomovil()) {
+				System.out.println(aut);
 			}
+		}
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		System.out.println("***********************************");
+		System.out.println("Automovil");
+		System.out.println("***********************************");
+		System.out.println("***********************************");
+		System.out.println("Join Inner");
+		System.out.println("***********************************");
+		List<Automovil> lisAuto = this.automovilService.buscarInnerJoin();
+		for (Automovil automovil : lisAuto) {
+			System.out.println(automovil);
+		}
+
+		System.out.println("***********************************");
+		System.out.println("Join Right");
+		System.out.println("***********************************");
+		List<Automovil> lisAuto1 = this.automovilService.buscarRightJoin();
+		for (Automovil automovil : lisAuto1) {
+			System.out.println(automovil);
+		}
+
+		System.out.println("***********************************");
+		System.out.println("Join Left");
+		System.out.println("***********************************");
+		List<Automovil> lisAuto2 = this.automovilService.buscarLeftJoin();
+		for (Automovil automovil : lisAuto2) {
+			System.out.println(automovil);
+		}
+
+		System.out.println("***********************************");
+		System.out.println("Join Full");
+		System.out.println("***********************************");
+		List<Automovil> lisAuto3 = this.automovilService.buscarFullJoin();
+		for (Automovil automovil : lisAuto3) {
+			System.out.println(automovil);
+		}
+
+		System.out.println("***********************************");
+		System.out.println("Join Where");
+		System.out.println("***********************************");
+
+		List<Automovil> lisAuto4 = this.automovilService.buscarWhereJoin();
+		for (Automovil automovil : lisAuto4) {
+			System.out.println(automovil);
+		}
+		System.out.println("***********************************");
+		System.out.println("Join Fetch");
+		System.out.println("***********************************");
+		List<Automovil> lisAutoFetch = this.automovilService.buscarJoinFetch();
+		for (Automovil automovil : lisAutoFetch) {
+			System.out.println(automovil.getMarca());
+			System.out.println("Tiene al siguiente dueño");
+			System.out.println(automovil.getPersona());
 		}
 		
 	}

@@ -39,7 +39,7 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
 
     @Override
     public List<Persona> seleccionarInnerJoin() {
-        String jpql = "SELECT p FROM Persona p LEFT JOIN p.automovil a";
+        String jpql = "SELECT p FROM Persona p JOIN p.automovil a";
         TypedQuery<Persona> myQuery = this.entityManager.createQuery(jpql, Persona.class);
         return myQuery.getResultList();
     }
@@ -47,6 +47,13 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
     @Override
     public List<Persona> seleccionarRightJoin() {
         String jpql = "SELECT p FROM Persona p RIGHT JOIN p.automovil a";
+        TypedQuery<Persona> myQuery = this.entityManager.createQuery(jpql, Persona.class);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Persona> seleccionarLeftJoin() {
+        String jpql = "SELECT p FROM Persona p LEFT JOIN p.automovil a";
         TypedQuery<Persona> myQuery = this.entityManager.createQuery(jpql, Persona.class);
         return myQuery.getResultList();
     }
@@ -63,6 +70,13 @@ public class PersonaRepositoryImpl implements IPersonaRepository{
         String jpql = "SELECT p FROM Persona p, Automovil a WHERE p = a.persona";
 
         TypedQuery<Persona> myQuery = this.entityManager.createQuery(jpql,Persona.class);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Persona> seleccionarJoinFetch() {
+        String jpql = "SELECT p FROM Persona p JOIN FETCH p.automovil a";
+        TypedQuery<Persona> myQuery = this.entityManager.createQuery(jpql, Persona.class);
         return myQuery.getResultList();
     }
 }

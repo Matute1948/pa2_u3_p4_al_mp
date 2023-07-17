@@ -39,6 +39,13 @@ public class AutomovilRepositoryImpl implements IAutomovilRepository {
     }
     @Override
     public List<Automovil> seleccionarInnerJoin() {
+        String jpql = "SELECT a FROM Automovil a JOIN a.persona p";
+        TypedQuery<Automovil> myQuery = this.entityManager.createQuery(jpql, Automovil.class);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Automovil> seleccionarLeftJoin() {
         String jpql = "SELECT a FROM Automovil a LEFT JOIN a.persona p";
         TypedQuery<Automovil> myQuery = this.entityManager.createQuery(jpql, Automovil.class);
         return myQuery.getResultList();
@@ -60,9 +67,16 @@ public class AutomovilRepositoryImpl implements IAutomovilRepository {
 
     @Override
     public List<Automovil> seleccionarWhereJoin() {
-        String jpql = "SELECT a FROM Automovil a, Persona p WHERE a = p.automovil";
+        String jpql = "SELECT a FROM Persona p, Automovil a WHERE p = a.persona";
 
         TypedQuery<Automovil> myQuery = this.entityManager.createQuery(jpql,Automovil.class);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Automovil> seleccionarJoinFetch() {
+        String jpql = "SELECT a FROM Automovil a JOIN FETCH a.persona p";
+        TypedQuery<Automovil> myQuery = this.entityManager.createQuery(jpql, Automovil.class);
         return myQuery.getResultList();
     }
     

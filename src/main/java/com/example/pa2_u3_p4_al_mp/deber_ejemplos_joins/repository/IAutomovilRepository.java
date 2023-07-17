@@ -10,8 +10,10 @@ public interface IAutomovilRepository {
     public void eliminar(String id);
     public Automovil seleccionarPorId(String id);
     public List<Automovil> seleccionarInnerJoin();
+    public List<Automovil> seleccionarLeftJoin();
     public List<Automovil> seleccionarRightJoin();
     public List<Automovil> seleccionarFullJoin();
     public List<Automovil> seleccionarWhereJoin();
+    public List<Automovil> seleccionarJoinFetch();
 
 }
