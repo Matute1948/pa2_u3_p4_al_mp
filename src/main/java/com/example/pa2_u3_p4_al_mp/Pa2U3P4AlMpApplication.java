@@ -35,6 +35,7 @@ public class Pa2U3P4AlMpApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		List<Estudiante> listEst = new ArrayList<>();
 		List<Materia> listMat = new ArrayList<>();
+		List<String> lisCodigo = new ArrayList<>();
 		
 		Estudiante estu1 = new Estudiante();
 		Estudiante estu2 = new Estudiante();
@@ -124,13 +125,23 @@ public class Pa2U3P4AlMpApplication implements CommandLineRunner{
 		listMat.add(mat3);
 		listMat.add(mat4);
 
+		lisCodigo.add(mat1.getCodigo());
+		lisCodigo.add(mat2.getCodigo());
+		lisCodigo.add(mat3.getCodigo());
+		lisCodigo.add(mat4.getCodigo());
+
 		smt1.setFechaInicio(LocalDate.of(2023, 2, 12));
 		smt1.setFechaFin(LocalDate.of(2023, 6, 12));
 		smt1.setMateria(listMat);
 		smt1.setNumero("Primer semestre");
 
-		this.estudianteService.agregar(estu1);
-		this.materiaService.agregar(mat1);
+		//this.estudianteService.agregar(estu1);
+		//this.materiaService.agregar(mat1);
+
+		this.matriculaService.realizar("123456789", lisCodigo);
+		this.matriculaService.realizar("123456781", lisCodigo);
+		this.matriculaService.realizar("123456782", lisCodigo);
+		this.matriculaService.realizar("123456783", lisCodigo);
 	}
 
 }

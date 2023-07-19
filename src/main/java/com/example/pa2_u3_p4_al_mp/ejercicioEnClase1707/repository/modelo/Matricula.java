@@ -28,11 +28,11 @@ public class Matricula {
     @Column(name = "matri_repetida")
     private Boolean repetida;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "matri_id_estudiante")
     private Estudiante estudiante;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "matri_id_materia")
     private Materia materia;
 

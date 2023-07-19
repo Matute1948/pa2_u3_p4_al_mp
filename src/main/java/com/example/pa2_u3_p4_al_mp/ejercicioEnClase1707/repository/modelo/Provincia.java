@@ -2,6 +2,7 @@ package com.example.pa2_u3_p4_al_mp.ejercicioEnClase1707.repository.modelo;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Provincia {
     private String region;
     @Column(name = "pvc_poblacion")
     private String poblacion;
-    @OneToMany(mappedBy = "provincia")
+    @OneToMany(mappedBy = "provincia",cascade = CascadeType.ALL)
     private List<Estudiante> estudiante;
     //get y set
     public Integer getId() {

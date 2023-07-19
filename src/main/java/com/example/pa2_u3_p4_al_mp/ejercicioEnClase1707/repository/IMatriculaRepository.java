@@ -4,5 +4,4 @@ import com.example.pa2_u3_p4_al_mp.ejercicioEnClase1707.repository.modelo.Matric
 
 public interface IMatriculaRepository {
     public void insertar(Matricula matricula);
-    public void realizar(String cedulaEstudiante, String codigoMateria);
 }

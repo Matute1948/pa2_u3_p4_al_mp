@@ -3,6 +3,7 @@ package com.example.pa2_u3_p4_al_mp.ejercicioEnClase1707.repository.modelo;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Semestre {
     private LocalDate fechaInicio;
     @Column(name = "stre_fecha_fin")
     private LocalDate fechaFin;
-    @OneToMany(mappedBy = "semestre")
+    @OneToMany(mappedBy = "semestre",cascade = CascadeType.ALL)
     private List<Materia> materia;
     public Integer getId() {
         return id;
