@@ -12,6 +12,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService{
     private ICuentaBancariaRepository cuentaBancariaRepository;
     @Override
     public void agregar(CuentaBancaria cuentaBancaria) {
+        
         this.cuentaBancariaRepository.insertar(cuentaBancaria);
     }
 
@@ -28,6 +29,11 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService{
     @Override
     public CuentaBancaria buscarPorId(String id) {
         return this.cuentaBancariaRepository.seleccionarPorId(id);
+    }
+
+    @Override
+    public CuentaBancaria buscarPorNumCuentaBancaria(String id) {
+        return this.cuentaBancariaRepository.seleccionarPorNumerp(id);
     }
     
 }

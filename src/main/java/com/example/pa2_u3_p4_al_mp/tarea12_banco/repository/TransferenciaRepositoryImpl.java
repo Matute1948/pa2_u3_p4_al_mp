@@ -44,29 +44,6 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
 
     @Override
     public void realizarTransferencia(String numCtaOrigen, String numCtaDestino, BigDecimal monto) {
-        String jpql = "SELECT c FROM CuentaBancaria c WHERE c.numero = :datoNumero";
-        TypedQuery<CuentaBancaria> myQuery = this.entityManager.createQuery(jpql, CuentaBancaria.class);
-        myQuery.setParameter("datoNumero", numCtaOrigen);
-        CuentaBancaria cuentaBanOrigen = myQuery.getSingleResult();
-
-        String jpql1 = "SELECT c FROM CuentaBancaria c WHERE c.numero = :datoNumero";
-        TypedQuery<CuentaBancaria> myQuery1 = this.entityManager.createQuery(jpql1, CuentaBancaria.class);
-        myQuery1.setParameter("datoNumero", numCtaDestino);
-        CuentaBancaria cuentaBanDestino = myQuery1.getSingleResult();
-
-        if (monto.compareTo(cuentaBanOrigen.getSaldo()) <= 0){
-            cuentaBanDestino.setSaldo(monto.add(cuentaBanDestino.getSaldo()));
-            cuentaBanOrigen.setSaldo(cuentaBanOrigen.getSaldo().subtract(monto));
-        }else{
-            System.out.println("Saldo insuficiente para hacer la transferencia");
-        }
-
-        Transferencia transferencia = new Transferencia();
-        transferencia.setMonto(monto);
-        transferencia.setCtaDestino(cuentaBanDestino);
-        transferencia.setCtaOrigen(cuentaBanOrigen);
-        transferencia.setFecha(LocalDate.of(2023, 7, 10));
-        this.insertar(transferencia);
         
     }
 

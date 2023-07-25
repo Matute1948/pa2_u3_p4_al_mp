@@ -7,4 +7,5 @@ public interface ICuentaBancariaService {
     public void actulizar(CuentaBancaria cuentaBancaria);
     public void remover(String id);
     public CuentaBancaria buscarPorId(String id);
+    public CuentaBancaria buscarPorNumCuentaBancaria(String id);
 }

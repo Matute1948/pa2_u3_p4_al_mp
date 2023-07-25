@@ -7,4 +7,5 @@ public interface ICuentaBancariaRepository {
     public void actulizar(CuentaBancaria cuentaBancaria);
     public void eliminar(String id);
     public CuentaBancaria seleccionarPorId(String id);
+    public CuentaBancaria seleccionarPorNumerp(String numCta);
 }
