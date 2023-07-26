@@ -25,7 +25,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
     private EntityManager entityManager;
 
     @Override
-    @Transactional(value = TxType.REQUIRED)
+    @Transactional(value = TxType.MANDATORY)
     public void insertar(Transferencia transferencia) {
         
         this.entityManager.persist(transferencia);
@@ -33,17 +33,20 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
     }
 
     @Override
+    @Transactional(value = TxType.MANDATORY)
     public void actulizar(Transferencia transferencia) {
         this.entityManager.merge(transferencia);
     }
 
     @Override
+    @Transactional(value = TxType.MANDATORY)
     public void eliminar(String id) {
         Transferencia trans = this.seleccionarPorId(id);
         this.entityManager.remove(trans);
     }
 
     @Override
+    @Transactional(value = TxType.NOT_SUPPORTED)
     public Transferencia seleccionarPorId(String id) {
         return this.entityManager.find(Transferencia.class, id);
     }
@@ -54,6 +57,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
     }
 
     @Override
+    @Transactional(value = TxType.NOT_SUPPORTED)
     public List<Transferencia> seleccionarTodo() {
         String jpql = "SELECT f FROM Transferencia f JOIN FETCH f.ctaOrigen c";
         TypedQuery<Transferencia> myQuery = this.entityManager.createQuery(jpql, Transferencia.class);
