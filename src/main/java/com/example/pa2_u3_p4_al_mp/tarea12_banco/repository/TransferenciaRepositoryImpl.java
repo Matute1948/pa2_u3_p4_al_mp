@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.stereotype.Repository;
 
 import com.example.pa2_u3_p4_al_mp.repository.modelo.Hotel;
@@ -14,6 +16,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 @Repository
 @Transactional
@@ -22,8 +25,11 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository{
     private EntityManager entityManager;
 
     @Override
+    @Transactional(value = TxType.REQUIRED)
     public void insertar(Transferencia transferencia) {
+        
         this.entityManager.persist(transferencia);
+        //throw new RuntimeException();
     }
 
     @Override

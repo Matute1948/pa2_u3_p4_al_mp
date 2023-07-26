@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 @Repository
 @Transactional
@@ -21,6 +22,7 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
     }
 
     @Override
+    @Transactional(value = TxType.REQUIRED)
     public void actulizar(CuentaBancaria cuentaBancaria) {
         this.entityManager.merge(cuentaBancaria);
     }
@@ -37,7 +39,7 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
     }
 
     @Override
-    public CuentaBancaria seleccionarPorNumerp(String numCta) {
+    public CuentaBancaria seleccionarPorNumero(String numCta) {
         String jpql = "SELECT c FROM CuentaBancaria c WHERE c.numero = :datoNumero";
         TypedQuery<CuentaBancaria> myQuery = this.entityManager.createQuery(jpql, CuentaBancaria.class);
         myQuery.setParameter("datoNumero", numCta);

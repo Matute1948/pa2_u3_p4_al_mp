@@ -33,7 +33,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService{
 
     @Override
     public CuentaBancaria buscarPorNumCuentaBancaria(String id) {
-        return this.cuentaBancariaRepository.seleccionarPorNumerp(id);
+        return this.cuentaBancariaRepository.seleccionarPorNumero(id);
     }
     
 }
