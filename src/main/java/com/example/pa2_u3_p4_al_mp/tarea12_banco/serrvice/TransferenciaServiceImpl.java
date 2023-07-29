@@ -57,7 +57,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService{
             this.cuentaBancariaRepository.actulizar(cuentaBanDestino);
             this.cuentaBancariaRepository.actulizar(cuentaBanOrigen);
             Transferencia transferencia = new Transferencia();
-            transferencia.setMonto(monto);
+            transferencia.setMonto(null);
             transferencia.setCtaDestino(cuentaBanDestino);
             transferencia.setCtaOrigen(cuentaBanOrigen);
             transferencia.setFecha(LocalDate.of(2023, 7, 10));
