@@ -20,4 +20,14 @@ public class MetodosReferenciados {
             return false;
         }
     }
+
+    public String getString(Integer num){
+
+        return "Hola: "+num+" zzz";
+    }
+
+    public Integer getInteger(Integer num){
+
+        return Math.multiplyExact(num, num);
+    }
 }

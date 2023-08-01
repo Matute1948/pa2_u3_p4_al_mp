@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         IPersona persona = new PersonaImpl();
         persona.caminar();
+        //*************************************************************************************
         //1.- Supplier
 
         //Clases
@@ -31,6 +32,7 @@ public class Main {
         IPersonaSupplier<Integer> supplier4 = metodos::getId;
         LOG.info("Supplier metodo referenciado"+supplier4.getId());
 
+        //*************************************************************************************
         //2.Consumer
         
         //Clases
@@ -56,7 +58,7 @@ public class Main {
         LOG.info("Consumer metodos refernciados");
         consumer4.accept("A");
 
-
+        //**********************************************************************************
         //3.- Predicate 
         //lambda
         IPersonaPredicate<Integer> predicate = valor ->valor.compareTo(8) == 0;
@@ -83,24 +85,38 @@ public class Main {
         IPersonaPredicate<Integer> predicate3 = metodos::getBoolean;
         LOG.info("Predicate metodo referenciado"+predicate3.evaluar(4));
 
-
+        //********************************************************************************
         //4.-Funtion
-        //IPersonaFuntion<String, Integer> funtion = numero -> numero.toString();
-        //LOG.info("Funtion 1 lambda nombre: "+ funtion.aplicar(4));
+        IPersonaFuntion<String, Integer> funtion = numero -> numero.toString();
+        LOG.info("Funtion 1 lambda nombre: "+ funtion.aplicar(4));
 
-        //IPersonaFuntion<String, Integer> funtion1 = numero -> {
-        //    String valorFinal = numero.toString().concat("Valor");
-        //    return valorFinal;
-        //};
-        //.info("Funtion 2 lambda nombre: "+ funtion1.aplicar(10));
+        IPersonaFuntion<String, Integer> funtion1 = numero -> {
+            String valorFinal = numero.toString().concat("Valor");
+            return valorFinal;
+        };
+        LOG.info("Funtion 2 lambda nombre: "+ funtion1.aplicar(10));
+
+        //Metodos Referenciados
+        IPersonaFuntion<String, Integer> funtion2 = metodos::getString;
+        LOG.info("Funtion Metodos Refernciados ");
+        LOG.info(funtion2.aplicar(666));
+        
+
+        //*********************************************************************************
         //5.- UnaryOperator
-        /*? 
+         
         IPersonaUnaryOperatorFunction<Integer> unary = numero -> Math.multiplyExact(numero, 3);
         LOG.info("Unary 1 lambda nombre: "+ unary.aplicar(10));
 
-        IPersonaUnaryOperatorFunction<Integer> unary1 = numero -> Math.subtractExact(numero, -2);
+        IPersonaUnaryOperatorFunction<Integer> unary1 = numero -> Math.subtractExact(numero, 20);
         LOG.info("Unary 2 lambda nombre: "+ unary1.aplicar(30));
-        */
+        
+        //Metodos Referenciados
+
+        IPersonaUnaryOperatorFunction<Integer> unary2 = metodos::getInteger;
+        LOG.info("Unary Metodos Refernciados ");
+        LOG.info(""+unary2.aplicar(7));
+
 
     }
 }
