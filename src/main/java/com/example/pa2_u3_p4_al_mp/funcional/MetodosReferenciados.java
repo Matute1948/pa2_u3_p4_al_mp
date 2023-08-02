@@ -8,6 +8,14 @@ public class MetodosReferenciados {
     public Integer getId(){
         return 8;
     }
+    public static String getIdHo(){
+        LOG.info("metodos referenciado HO");
+        return "Andres Lugmaña";
+    }
+    public static String getConsumerHo(String dato){
+        LOG.info("metodos referenciado HO");
+        return "Andres" + dato;
+    }
     public void aceptar(String arg){
         String cadena = "Andres";
         LOG.info(cadena+" "+arg);

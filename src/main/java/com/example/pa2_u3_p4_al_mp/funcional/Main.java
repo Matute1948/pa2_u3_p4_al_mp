@@ -1,4 +1,7 @@
 package com.example.pa2_u3_p4_al_mp.funcional;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger; // debe ser este pilas
 import org.slf4j.LoggerFactory;
@@ -116,6 +119,59 @@ public class Main {
         IPersonaUnaryOperatorFunction<Integer> unary2 = metodos::getInteger;
         LOG.info("Unary Metodos Refernciados ");
         LOG.info(""+unary2.aplicar(7));
+
+
+        //*************************Metodos high order******************
+        //Supplier
+        // 1.- Clase
+        MetodoHighOrder highOrder = new MetodoHighOrder();
+        IPersonaSupplier<String> supplierHO = new PersonaSupplierImpl();
+        highOrder.metodo(supplierHO);
+        //2.- Lambdas
+        highOrder.metodo(() -> "123456789HO");
+        //3.- Metodos referenciados
+        highOrder.metodo(MetodosReferenciados::getIdHo);
+        //Consumer
+        //1.- Clase 
+        IPersonaConsumer<String> consumerHO = new PersonaConsumerImpl();
+        highOrder.metodoConsumer(consumerHO, "Andres");
+        //2.- lambda
+        highOrder.metodoConsumer((para) -> LOG.info(para), "Lambda Cosumer HO");
+        //3.- MEtodos Referenciales
+        highOrder.metodoConsumer(MetodosReferenciados::getConsumerHo, "MF HO");
+
+        //Interfaces Funcionales JAVA
+        //1.- Supplier
+        Stream<String> lista = Stream.generate(() -> "1234567890").limit(10); // genera una lista  de 10 elementos
+        lista.forEach(cadena -> LOG.info(cadena));
+        LOG.info("Prueba"+lista);
+
+        //2.- Consumer
+        List<Integer> listaNumeros = Arrays.asList(1,2,3,4,5,6,7,8,9);
+        listaNumeros.forEach(cadena ->{
+            LOG.info(""+cadena);
+        });
+
+        //3.- Predicate 
+        Stream<Integer> listaFinal = listaNumeros.stream().filter(numero->numero>=5);
+        listaFinal.forEach(numero -> LOG.info(("valor: "+numero)));
+
+        //4.. Funtion
+        Stream<String> listaCambiada=listaNumeros.stream().map(numero ->{
+            Integer num=10;
+            num = num + numero;
+            return "N" + num;
+        });
+        listaCambiada.forEach(cadena -> LOG.info(cadena));
+
+        //5.- unary Operation
+        Stream<String> listaCambiada2=listaNumeros.stream().map(numero ->{
+            Integer num=10;
+            num = num + numero;
+            return "N" + num;
+        });
+        listaCambiada2.forEach(cadena -> LOG.info(cadena.toString()));
+
 
 
     }
