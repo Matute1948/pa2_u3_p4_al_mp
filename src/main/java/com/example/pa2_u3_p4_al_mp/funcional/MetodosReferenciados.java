@@ -9,12 +9,24 @@ public class MetodosReferenciados {
         return 8;
     }
     public static String getIdHo(){
-        LOG.info("metodos referenciado HO");
-        return "Andres Lugmaña";
+        LOG.info("metodos referenciado supplier HO");
+        return "ret supplier Andres Lugmaña";
     }
     public static String getConsumerHo(String dato){
-        LOG.info("metodos referenciado HO");
-        return "Andres" + dato;
+        LOG.info("metodos referenciado consumer HO");
+        return "ret consumer Andres" + dato;
+    }
+    public static Boolean getPredicateHo(Integer dato){
+        LOG.info("metodos referenciado predicate HO");
+        return (9 >= dato);
+    }
+    public static String getFunctionHo(Integer dato){
+        LOG.info("metodos referenciado function HO");
+        return "ret met ref Funtion: "+dato;
+    }
+    public static Integer getUnaryOperatorHo(Integer dato){
+        LOG.info("metodos referenciado unary Operator HO");
+        return Math.subtractExact(dato, 9);
     }
     public void aceptar(String arg){
         String cadena = "Andres";

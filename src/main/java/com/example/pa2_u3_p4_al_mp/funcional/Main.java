@@ -120,7 +120,7 @@ public class Main {
         LOG.info("Unary Metodos Refernciados ");
         LOG.info(""+unary2.aplicar(7));
 
-
+        LOG.info("*******************************************************************");
         //*************************Metodos high order******************
         //Supplier
         // 1.- Clase
@@ -131,6 +131,8 @@ public class Main {
         highOrder.metodo(() -> "123456789HO");
         //3.- Metodos referenciados
         highOrder.metodo(MetodosReferenciados::getIdHo);
+
+        LOG.info("*******************************************************************");
         //Consumer
         //1.- Clase 
         IPersonaConsumer<String> consumerHO = new PersonaConsumerImpl();
@@ -139,7 +141,36 @@ public class Main {
         highOrder.metodoConsumer((para) -> LOG.info(para), "Lambda Cosumer HO");
         //3.- MEtodos Referenciales
         highOrder.metodoConsumer(MetodosReferenciados::getConsumerHo, "MF HO");
+        LOG.info("*******************************************************************");
+        //Predicate
+        //1.- Clase 
+        IPersonaPredicate<Integer> predicateHO = new PersonaPredicateImpl();
+        highOrder.metodoPredicate(predicateHO, 19);
+        //2.- lambdas
+        highOrder.metodoPredicate((pre)->Math.subtractExact(pre, 7) <= 5, 23);
+        //3.- Metodos referenciados
+        highOrder.metodoPredicate(MetodosReferenciados::getPredicateHo, 13);
+        LOG.info("*******************************************************************");
+        //Function
+        //1.- Clase 
+        IPersonaFuntion<String,Integer> functionHO = new PersonaFunctionImpl();
+        LOG.info(highOrder.metodoFunction(functionHO, 19));
+        //2.- lambdas
+        LOG.info(highOrder.metodoFunction((pre)->"fl F"+pre, 23));
+        //3.- Metodos referenciados
+        LOG.info(highOrder.metodoFunction(MetodosReferenciados::getFunctionHo, 13));
+        LOG.info("*******************************************************************");
+        //Unary Operator
+        //1.- Clase 
+        IPersonaUnaryOperatorFunction<Integer> unaryHO = new PersonaUnaryOperatorImpl();
+        highOrder.metodoUnaryOperator(unaryHO, 19);
+        //2.- lambdas
+        highOrder.metodoUnaryOperator((pre)->Math.subtractExact(pre, 5), 23);
+        //3.- Metodos referenciados
+        highOrder.metodoUnaryOperator(MetodosReferenciados::getUnaryOperatorHo, 13);
 
+
+        /* 
         //Interfaces Funcionales JAVA
         //1.- Supplier
         Stream<String> lista = Stream.generate(() -> "1234567890").limit(10); // genera una lista  de 10 elementos
@@ -171,7 +202,7 @@ public class Main {
             return "N" + num;
         });
         listaCambiada2.forEach(cadena -> LOG.info(cadena.toString()));
-
+        */
 
 
     }
