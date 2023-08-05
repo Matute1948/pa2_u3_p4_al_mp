@@ -1,8 +1,13 @@
 package com.example.pa2_u3_p4_al_mp.tarea12_banco.repository;
 
+import java.util.concurrent.TimeUnit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.example.pa2_u3_p4_al_mp.tarea12_banco.repository.modelo.CuentaBancaria;
+import com.example.pa2_u3_p4_al_mp.tarea12_banco.serrvice.PropietarioServiceImpl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -15,9 +20,10 @@ import jakarta.transaction.Transactional.TxType;
 public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
     @PersistenceContext
     private EntityManager entityManager;
-
+    private static final Logger LOG = LoggerFactory.getLogger(CuentaBancariaRepositoryImpl.class);
     @Override
     public void insertar(CuentaBancaria cuentaBancaria) {
+        LOG.info("hilo repo: "+Thread.currentThread().getName());
         this.entityManager.persist(cuentaBancaria);
     }
 

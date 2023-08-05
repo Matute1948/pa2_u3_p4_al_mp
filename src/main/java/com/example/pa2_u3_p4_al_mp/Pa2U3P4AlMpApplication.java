@@ -1,24 +1,27 @@
 package com.example.pa2_u3_p4_al_mp;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties.Stream;
 
 import com.example.pa2_u3_p4_al_mp.tarea12_banco.repository.modelo.CuentaBancaria;
 import com.example.pa2_u3_p4_al_mp.tarea12_banco.repository.modelo.Propietario;
+import com.example.pa2_u3_p4_al_mp.tarea12_banco.serrvice.ICuentaBancariaService;
 import com.example.pa2_u3_p4_al_mp.tarea12_banco.serrvice.IPropietarioService;
-import com.example.pa2_u3_p4_al_mp.tarea12_banco.serrvice.ITransferenciaService;
 
 
 @SpringBootApplication
 public class Pa2U3P4AlMpApplication implements CommandLineRunner{
+	private static final Logger LOG = LoggerFactory.getLogger(Pa2U3P4AlMpApplication.class);
 	@Autowired
-	private IPropietarioService propietarioService;
-	@Autowired
-	private ITransferenciaService transferenciaService;
+	private ICuentaBancariaService cuentaBancariaService;
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U3P4AlMpApplication.class, args);
 	}
@@ -26,14 +29,48 @@ public class Pa2U3P4AlMpApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		//Nos dice si hay una transaccion activa
-		System.out.println("main"+TransactionSynchronizationManager.isActualTransactionActive());
-		Propietario prop = new Propietario();
-		prop.setNombre("Jho");
-		prop.setApellido("Ca");
-		prop.setCedula("543");
-		this.propietarioService.agregar(prop);
+		LOG.info("hilo: "+Thread.currentThread().getName()); // ejecuta el nombre del hilo con el que se ejecuta mi programa
+		/* 
+		//inicio
+		long tiempoInicial = System.currentTimeMillis();
+		for(int i=0; i<= 30; i++){
+			CuentaBancaria cta = new CuentaBancaria();
+			cta.setNumero("rfff");
+			cta.setPropietario(null);
+			cta.setSaldo(new BigDecimal(10));
+			cta.setTipo("re");
+			this.cuentaBancariaService.agregar(cta);
+		}
+		long tiempoFinal = System.currentTimeMillis();
+		long tiempoTranscurrido = tiempoFinal - tiempoInicial;
+		LOG.info("tiempo transcurrido: " + tiempoTranscurrido/1000);
 
-		this.transferenciaService.procesoTransferencia("675849237", "123456789", new BigDecimal(300));
+		//this.transferenciaService.procesoTransferencia("675849237", "123456789", new BigDecimal(300));
+		*/
+		//inicio
+		long tiempoInicial = System.currentTimeMillis();
+		List<CuentaBancaria> lista = new ArrayList<>();
+
+		for(int i=0; i<= 100; i++){
+			CuentaBancaria cta = new CuentaBancaria();
+			cta.setNumero(""+i);
+			cta.setPropietario(null);
+			cta.setSaldo(new BigDecimal(10));
+			cta.setTipo("re");
+			lista.add(cta);
+		}
+
+		//lista.stream().forEach(cta ->  this.cuentaBancariaService.agregar(cta));
+		//lista.parallelStream().forEach(cta ->  this.cuentaBancariaService.agregar(cta));
+		//lista.parallelStream().forEach(cta ->  LOG.info("Se inserto la cta: "+this.cuentaBancariaService.agregar2(cta)));
+		lista.parallelStream().map(cta -> this.cuentaBancariaService.agregar2(cta)).forEach(x->LOG.info("Cuenta insertada: "+x));;
+		//Stream<String> listaFinal = lista.parallelStream().map(cta -> this.cuentaBancariaService.agregar2(cta));
+
+
+		//fin
+		long tiempoFinal = System.currentTimeMillis();
+		long tiempoTranscurrido = tiempoFinal - tiempoInicial;
+		LOG.info("tiempo transcurrido: " + tiempoTranscurrido/1000);
 		
 		
 		

@@ -1,8 +1,10 @@
 package com.example.pa2_u3_p4_al_mp.tarea12_banco.repository;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
+import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import com.example.pa2_u3_p4_al_mp.tarea12_banco.repository.modelo.Propietario;
 
 import jakarta.persistence.EntityManager;
@@ -13,13 +15,15 @@ import jakarta.transaction.Transactional.TxType;
 @Repository
 @Transactional
 public class PropietarioRepositoryImpl implements IPropietarioRepository{
+    //private static final Logger LOG = LoggerFactory.getLogger(PropietarioRepositoryImpl.class);
     @PersistenceContext
     private EntityManager entityManager;
     @Override
     @Transactional(value = TxType.NEVER)
     public void insertar(Propietario propietario) {
-        System.out.println("XDDD");
-        System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
+        //LOG.info("hilo rep: "+Thread.currentThread().getName());
+        //System.out.println("XDDD");
+        
         this.entityManager.persist(propietario);
     }
 
