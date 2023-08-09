@@ -1,15 +1,9 @@
 package com.example.pa2_u3_p4_al_mp.tarea12_banco.repository;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.stereotype.Repository;
-
-import com.example.pa2_u3_p4_al_mp.repository.modelo.Hotel;
-import com.example.pa2_u3_p4_al_mp.tarea12_banco.repository.modelo.CuentaBancaria;
 import com.example.pa2_u3_p4_al_mp.tarea12_banco.repository.modelo.Transferencia;
 
 import jakarta.persistence.EntityManager;

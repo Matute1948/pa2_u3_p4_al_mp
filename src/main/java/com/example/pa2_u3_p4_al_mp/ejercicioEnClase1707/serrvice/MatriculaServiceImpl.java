@@ -1,7 +1,6 @@
 package com.example.pa2_u3_p4_al_mp.ejercicioEnClase1707.serrvice;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

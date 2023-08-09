@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +56,6 @@ public class TransferenciaServiceImpl implements ITransferenciaService{
             this.cuentaBancariaRepository.actulizar(cuentaBanOrigen);
             Transferencia transferencia = new Transferencia();
             transferencia.setMonto(null);
-            transferencia.setCtaDestino(cuentaBanDestino);
             transferencia.setCtaOrigen(cuentaBanOrigen);
             transferencia.setFecha(LocalDate.of(2023, 7, 10));
             this.agregar(transferencia);

@@ -29,13 +29,12 @@ public class CuentaBancaria {
     private BigDecimal saldo;
     @Column(name = "cta_tipo")
     private String tipo;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ctaOrigen" )
+    private List<Transferencia> transferencias;
+    @ManyToOne
     @JoinColumn(name = "cta_id_propietario")
     private Propietario propietario;
-    @OneToMany(mappedBy = "ctaOrigen")
-    private List<Transferencia> cuentasOrigen;
-    @OneToMany(mappedBy = "ctaDestino")
-    private List<Transferencia> cuentasDestino;
+    
 
     //SET y GET
     public Integer getId() {
@@ -68,17 +67,11 @@ public class CuentaBancaria {
     public void setPropietario(Propietario proietario) {
         this.propietario = proietario;
     }
-    public List<Transferencia> getCuentasOrigen() {
-        return cuentasOrigen;
+    public List<Transferencia> getTransferencias() {
+        return transferencias;
     }
-    public void setCuentasOrigen(List<Transferencia> cuentasOrigen) {
-        this.cuentasOrigen = cuentasOrigen;
-    }
-    public List<Transferencia> getCuentasDestino() {
-        return cuentasDestino;
-    }
-    public void setCuentasDestino(List<Transferencia> cuentasDestino) {
-        this.cuentasDestino = cuentasDestino;
+    public void setTransferencias(List<Transferencia> cuentasOrigen) {
+        this.transferencias = cuentasOrigen;
     }
     
     //toString

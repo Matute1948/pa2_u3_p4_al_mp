@@ -1,7 +1,4 @@
 package com.example.pa2_u3_p4_al_mp.funcional;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 import org.slf4j.Logger; // debe ser este pilas
 import org.slf4j.LoggerFactory;

@@ -27,11 +27,9 @@ public class Transferencia {
     @Column(name = "tf_monto")
     private BigDecimal monto;
     @ManyToOne
-    @JoinColumn(name = "tf_id_cta_origen")
+    @JoinColumn(name = "tf_id_ctaOrigen")
     private CuentaBancaria ctaOrigen;
-    @ManyToOne
-    @JoinColumn(name = "tf_id_cta_destino")
-    private CuentaBancaria ctaDestino;
+
     //set y get
     public Integer getId() {
         return id;
@@ -57,12 +55,7 @@ public class Transferencia {
     public void setCtaOrigen(CuentaBancaria ctaOrigen) {
         this.ctaOrigen = ctaOrigen;
     }
-    public CuentaBancaria getCtaDestino() {
-        return ctaDestino;
-    }
-    public void setCtaDestino(CuentaBancaria ctaDestino) {
-        this.ctaDestino = ctaDestino;
-    }
+    
     //toString
     @Override
     public String toString() {
